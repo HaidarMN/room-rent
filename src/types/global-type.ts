@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ChangeEvent, ReactNode } from "react";
 
 export type ButtonType = {
   variant?: "primary" | "secondary";
@@ -16,5 +16,5 @@ export type InputType = {
   error?: boolean;
   required?: boolean;
   disabled?: boolean;
-  updateValue?: (e: any) => void;
+  updateValue?: (e: ChangeEvent<HTMLInputElement>) => void;
 };
