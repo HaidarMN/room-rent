@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .input-wrapper {
+    @apply flex flex-col items-start gap-1
+  }
+  .input-label {
+    @apply flex flex-row items-start gap-1 text-sm
+  }
+  .input-form {
+    @apply w-full rounded-md border-neutral-200 focus:border-black focus:ring-0
+  }
+  .input-error {
+   @apply !border-red-600 focus:!border-red-600 !text-red-600
+  }
+  .input-disabled {
+    @apply bg-neutral-100 cursor-not-allowed
+  }
+}

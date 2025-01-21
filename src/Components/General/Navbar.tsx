@@ -35,8 +35,9 @@ const Navbar = () => {
         </Link>
 
         <div className="hidden flex-row items-center gap-10 lg:flex">
-          {menuItems.map((item) => (
+          {menuItems.map((item, index) => (
             <NavLink
+              key={index}
               to={item.link}
               className={({ isActive }) =>
                 `text-lg font-medium transition-all hover:text-primary ${isActive && "text-primary"}`
@@ -66,8 +67,9 @@ const Navbar = () => {
           <h1 className="text-4xl font-bold text-primary">RoomRent</h1>
         </Link>
 
-        {menuItems.map((item) => (
+        {menuItems.map((item, index) => (
           <NavLink
+            key={index}
             to={item.link}
             className={({ isActive }) =>
               `font-medium transition-all hover:text-primary ${isActive && "text-primary"}`

@@ -7,3 +7,14 @@ export type ButtonType = {
   children: ReactNode;
   onClick?: () => void;
 };
+
+export type InputType = {
+  name: string;
+  label?: string;
+  placeholder?: string;
+  validationText?: string;
+  error?: boolean;
+  required?: boolean;
+  disabled?: boolean;
+  updateValue?: (e: any) => void;
+};
