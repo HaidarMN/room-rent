@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router";
 
 // Components
-import Button from "./Components/Global/button";
+import Button from "./components/global/button";
 
 const NotFound = () => {
   const navigate = useNavigate();

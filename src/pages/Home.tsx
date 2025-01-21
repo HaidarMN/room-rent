@@ -1,6 +1,6 @@
 import { ChangeEvent } from "react";
 
-import InputText from "../Components/Global/input/InputText";
+import InputText from "../components/global/input/InputText";
 
 const Home = () => {
   const checkValue = (e: ChangeEvent<HTMLInputElement>) => {
