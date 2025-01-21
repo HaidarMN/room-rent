@@ -1,4 +1,4 @@
-import type { ButtonType } from "../../../types/global-types";
+import type { ButtonType } from "../../../types/global-type";
 
 const Button = ({
   variant = "primary",
