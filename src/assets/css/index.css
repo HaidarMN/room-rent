@@ -4,18 +4,21 @@
 
 @layer components {
   .input-wrapper {
-    @apply flex flex-col items-start gap-1
+    @apply flex flex-col items-start gap-1;
   }
   .input-label {
-    @apply flex flex-row items-start gap-1 text-sm
+    @apply flex flex-row items-start gap-1 text-sm;
   }
   .input-form {
-    @apply w-full rounded-md border-neutral-200 focus:border-black focus:ring-0
+    @apply h-10 w-full border border-neutral-200 px-4 py-3 text-xs focus:border-black focus:ring-0;
+  }
+  .input-icon {
+    @apply h-10 !rounded-r-none border border-r-0 border-neutral-200 py-3 pl-3 pr-1 text-sm text-neutral-500;
   }
   .input-error {
-   @apply !border-red-600 focus:!border-red-600 !text-red-600
+    @apply !border-red-600 !text-red-600 focus:!border-red-600;
   }
   .input-disabled {
-    @apply bg-neutral-100 cursor-not-allowed
+    @apply cursor-not-allowed !bg-neutral-100;
   }
 }

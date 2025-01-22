@@ -1,19 +1,39 @@
-import { ChangeEvent } from "react";
+import { useState } from "react";
 
+// Components
+import Button from "../components/global/button";
+import InputSelect from "../components/global/input/InputSelect";
 import InputText from "../components/global/input/InputText";
 
 const Home = () => {
-  const checkValue = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
+  const optionsSize = [
+    { value: 1, label: "1 orang" },
+    { value: 2, label: "2 orang" },
+    { value: 3, label: "3 orang" },
+  ];
+
+  const optionsCity = [
+    { value: "malang", label: "Malang" },
+    { value: "surabya", label: "Surabya" },
+  ];
+
+  const [searchPayload, setSearchPayload] = useState({
+    location: "",
+    size: 1,
+    city: "",
+  });
+
+  const submit = () => {
+    alert(JSON.stringify(searchPayload));
   };
 
   return (
     <>
       <section>
         <div
-          className="relative h-[26rem] w-full bg-cover bg-center"
+          className="relative h-[30rem] w-full bg-cover bg-center"
           style={{
-            backgroundImage: "url('/src/assets/images/landing-page.jpg')",
+            backgroundImage: "url('./src/assets/images/landing-page.jpg')",
           }}
         >
           <div className="absolute inset-0 bg-black/30"></div>
@@ -24,33 +44,54 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="absolute -bottom-20 left-1/2 flex -translate-x-1/2 flex-col gap-2 rounded-md bg-white p-4 shadow">
-            <span>Pick your options</span>
-            <div className="flex flex-row items-center gap-4">
-              <InputText
-                name="Testing1"
-                label="Testing1"
-                required
-                validationText="Testing1"
-                placeholder="Testing1"
-                updateValue={checkValue}
-              />
-              <InputText
-                name="Testing2"
-                label="Testing2"
-                validationText="Testing2"
-                placeholder="Testing2"
-                disabled
-              />
-              <InputText
-                name="Testing3"
-                label="Testing3"
-                required
-                validationText="Testing3"
-                placeholder="Testing3"
-                disabled
-              />
-            </div>
+          <div className="absolute -bottom-10 left-1/2 flex -translate-x-1/2 flex-row items-center gap-2 rounded-full bg-white p-4 shadow">
+            <InputText
+              name="name"
+              placeholder="Location name"
+              className="w-60"
+              icon="material-symbols:search"
+              rounded
+              initialValue={searchPayload.location}
+              updateValue={(val) =>
+                setSearchPayload((prevValue) => ({
+                  ...prevValue,
+                  location: val,
+                }))
+              }
+            />
+            <InputSelect
+              name="size"
+              placeholder="Size"
+              options={optionsSize}
+              className="w-60"
+              icon="ic:baseline-people-alt"
+              rounded
+              initialValue={searchPayload.size}
+              updateValue={(val) =>
+                setSearchPayload((prevValue) => ({
+                  ...prevValue,
+                  size: Number(val),
+                }))
+              }
+            />
+            <InputSelect
+              name="city"
+              placeholder="City"
+              options={optionsCity}
+              className="w-60"
+              icon="ic:baseline-people-alt"
+              rounded
+              initialValue={searchPayload.city}
+              updateValue={(val) =>
+                setSearchPayload((prevValue) => ({
+                  ...prevValue,
+                  city: String(val),
+                }))
+              }
+            />
+            <Button rounded onClick={submit}>
+              Find
+            </Button>
           </div>
         </div>
       </section>

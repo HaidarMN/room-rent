@@ -1,14 +1,16 @@
-import { ChangeEvent, ReactNode } from "react";
+import { ReactElement, ReactNode } from "react";
 
 export type ButtonType = {
   variant?: "primary" | "secondary";
   outline?: boolean;
   disabled?: boolean;
-  children: ReactNode;
+  rounded?: boolean;
+  children: ReactNode | ReactElement;
+  className?: string;
   onClick?: () => void;
 };
 
-export type InputType = {
+type InputType = {
   name: string;
   label?: string;
   placeholder?: string;
@@ -16,5 +18,24 @@ export type InputType = {
   error?: boolean;
   required?: boolean;
   disabled?: boolean;
-  updateValue?: (e: ChangeEvent<HTMLInputElement>) => void;
+  className?: string;
+  icon?: string;
+  rounded?: boolean;
+};
+
+export type InputTextType = InputType & {
+  initialValue?: string;
+  updateValue?: (e: string) => void;
+};
+
+export type InputSelectType = InputType & {
+  options: Array<{
+    value: string | number;
+    label: string;
+  }>;
+  multi?: boolean;
+  clearable?: boolean;
+  isLoading?: boolean;
+  initialValue?: string | number | Array<string | number>;
+  updateValue?: (e: string | number | Array<string | number>) => void;
 };
