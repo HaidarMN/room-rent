@@ -9,6 +9,9 @@ export default {
         light: "#dee3e2",
         accent: "#18b0b0",
       },
+      fontFamily: {
+        poppins: ["Poppins", "serif"],
+      },
     },
     container: {
       center: true,
