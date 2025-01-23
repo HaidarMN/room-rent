@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @layer components {
+  /* #region INPUT */
   .input-wrapper {
     @apply flex w-full min-w-60 flex-col items-start gap-1;
   }
@@ -23,5 +24,10 @@
   }
   .input-disabled {
     @apply cursor-not-allowed !bg-neutral-100;
+  }
+  /* #endregion */
+
+  .title {
+    @apply font-oswald text-4xl font-bold;
   }
 }

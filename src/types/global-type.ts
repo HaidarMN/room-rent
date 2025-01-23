@@ -10,6 +10,7 @@ export type ButtonType = {
   onClick?: () => void;
 };
 
+// #region INPUT
 type InputType = {
   name: string;
   label?: string;
@@ -39,4 +40,15 @@ export type InputSelectType = InputType & {
   menuPlacement?: "top" | "bottom";
   initialValue?: string | number | Array<string | number>;
   updateValue?: (e: string | number | Array<string | number>) => void;
+};
+// #endregion
+
+export type TabType = {
+  items: Array<{
+    value: string;
+    label: string;
+    disabled?: boolean;
+  }>;
+  activeTab: string;
+  updateValue: (e: string) => void;
 };
