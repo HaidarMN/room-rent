@@ -20,6 +20,7 @@ const InputSelect = ({
   multi,
   clearable,
   isLoading,
+  menuPlacement = "bottom",
   initialValue,
   updateValue,
 }: InputSelectType) => {
@@ -43,7 +44,15 @@ const InputSelect = ({
         </label>
       )}
 
-      <div className="flex flex-row-reverse items-center">
+      <div className="input-icon-wrapper">
+        {icon && (
+          <div
+            className={`input-icon bg-white ${focused && "border-r-0 border-black"} ${rounded ? "rounded-full" : "rounded-md"}`}
+          >
+            <Icon icon={icon} />
+          </div>
+        )}
+
         <Select
           name={name}
           id={name}
@@ -54,6 +63,7 @@ const InputSelect = ({
           isMulti={multi}
           isLoading={isLoading}
           options={options}
+          menuPlacement={menuPlacement}
           value={options.filter((val) =>
             multi && Array.isArray(inputValue)
               ? inputValue.includes(val.value)
@@ -78,6 +88,7 @@ const InputSelect = ({
             }),
           }}
           classNames={{
+            container: () => "w-full",
             placeholder: () => "text-neutral-500",
             control: ({ isFocused }) =>
               `input-form py-1 ${icon && "rounded-l-none border-l-0 !px-2 focus:border-l-0"} ${rounded ? "rounded-full" : "rounded-md"} ${error && "input-error"} ${disabled && "input-disabled"} ${isFocused && "border-black"} ${className}`,
@@ -99,14 +110,6 @@ const InputSelect = ({
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
         />
-
-        {icon && (
-          <div
-            className={`input-icon bg-white ${focused && "border-r-0 border-black"} ${rounded ? "rounded-full" : "rounded-md"}`}
-          >
-            <Icon icon={icon} />
-          </div>
-        )}
       </div>
 
       {validationText && (

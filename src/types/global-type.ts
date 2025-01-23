@@ -36,6 +36,7 @@ export type InputSelectType = InputType & {
   multi?: boolean;
   clearable?: boolean;
   isLoading?: boolean;
+  menuPlacement?: "top" | "bottom";
   initialValue?: string | number | Array<string | number>;
   updateValue?: (e: string | number | Array<string | number>) => void;
 };

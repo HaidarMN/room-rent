@@ -11,7 +11,7 @@ const Button = ({
 }: ButtonType) => {
   const checkClass = () => {
     let className: string =
-      "px-4 py-2 font-medium text-sm border transition-all ";
+      "px-4 py-2 text-sm font-medium h-12 w-full border transition-all ";
 
     className += `${variant === "primary" ? "border-primary" : "border-secondary"} ${rounded ? "rounded-full" : "rounded-md"} `;
 
