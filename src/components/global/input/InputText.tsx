@@ -40,14 +40,6 @@ const InputText = ({
       )}
 
       <div className="input-icon-wrapper">
-        {icon && (
-          <div
-            className={`input-icon bg-white peer-focus:border-r-0 peer-focus:border-black ${rounded ? "rounded-full" : "rounded-md"} ${error && "input-error"} ${disabled && "input-disabled"}`}
-          >
-            <Icon icon={icon} />
-          </div>
-        )}
-
         <input
           type="text"
           name={name}
@@ -58,6 +50,14 @@ const InputText = ({
           value={inputValue}
           onChange={onChangeInput}
         />
+
+        {icon && (
+          <div
+            className={`input-icon bg-white peer-focus:border-r-0 peer-focus:border-black ${rounded ? "rounded-full" : "rounded-md"} ${error && "input-error"} ${disabled && "input-disabled"}`}
+          >
+            <Icon icon={icon} />
+          </div>
+        )}
       </div>
 
       {validationText && (

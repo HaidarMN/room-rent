@@ -45,14 +45,6 @@ const InputSelect = ({
       )}
 
       <div className="input-icon-wrapper">
-        {icon && (
-          <div
-            className={`input-icon bg-white ${focused && "border-r-0 border-black"} ${rounded ? "rounded-full" : "rounded-md"}`}
-          >
-            <Icon icon={icon} />
-          </div>
-        )}
-
         <Select
           name={name}
           id={name}
@@ -110,6 +102,14 @@ const InputSelect = ({
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
         />
+
+        {icon && (
+          <div
+            className={`input-icon bg-white ${focused && "border-r-0 border-black"} ${rounded ? "rounded-full" : "rounded-md"}`}
+          >
+            <Icon icon={icon} />
+          </div>
+        )}
       </div>
 
       {validationText && (
