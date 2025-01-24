@@ -9,7 +9,7 @@ const Home = () => {
         <HomeHeader />
       </section>
 
-      <section className="flex flex-col gap-10 p-8 pt-8 xl:gap-20 xl:pt-20">
+      <section className="flex flex-col gap-10 py-8 xl:gap-20 xl:pt-20">
         <SpaceType />
       </section>
     </>
