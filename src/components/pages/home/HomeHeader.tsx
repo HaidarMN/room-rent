@@ -39,14 +39,12 @@ const HomeHeader = () => {
         <div
           className="relative h-full w-full bg-cover bg-center"
           style={{
-            backgroundImage: "url('./src/assets/images/landing-page.jpg')",
+            backgroundImage: "url('/images/landing-page.jpg')",
           }}
         >
           <div className="absolute inset-0 bg-black/30"></div>
           <div className="container relative top-1/2 z-10 flex w-full -translate-y-1/2 flex-col gap-2 text-white">
-            <h1 className="font-oswald text-4xl font-bold md:text-6xl">
-              RoomRent
-            </h1>
+            <h1 className="title">RoomRent</h1>
             <p className="text-base font-medium md:text-xl xl:text-2xl">
               Simpliying the way you find and rent your perfect space
             </p>
