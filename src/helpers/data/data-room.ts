@@ -1,4 +1,4 @@
-export const bestSpace = [
+export const dataRoom = [
   {
     uid: "5b1ed0d1-679c-439e-a9f1-18fa31304ec9",
     name: "Zboncak-Mosciski",
