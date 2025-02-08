@@ -3,7 +3,12 @@ import { dataRoom, dataReview } from "../helpers/data";
 
 // Swiper
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Scrollbar, Mousewheel, EffectCoverflow } from "swiper/modules";
+import {
+  Scrollbar,
+  Mousewheel,
+  EffectCoverflow,
+  Autoplay,
+} from "swiper/modules";
 
 // Page Items
 import ListCard from "../components/room/ListCard";
@@ -83,7 +88,10 @@ const Home = () => {
             modifier: 1,
             slideShadows: false,
           }}
-          modules={[EffectCoverflow]}
+          autoplay={{
+            disableOnInteraction: true,
+          }}
+          modules={[EffectCoverflow, Autoplay]}
           className="w-full lg:w-2/3"
         >
           {dataReview.map((item) => (
@@ -102,6 +110,26 @@ const Home = () => {
             </SwiperSlide>
           ))}
         </Swiper>
+      </section>
+
+      <section className="container bg-light py-8">
+        <div className="flex w-full flex-col gap-4 lg:w-1/3">
+          <h1 className="title text-secondary">Enjoy Our Privilege</h1>
+          <div className="w-20 border-t-2 border-accent"></div>
+          <p>What makes us your best friend</p>
+        </div>
+      </section>
+
+      <section className="container flex flex-col py-8 lg:flex-row-reverse">
+        <div className="flex w-full flex-col items-start gap-4 lg:w-1/3 lg:items-end">
+          <h1 className="title text-start lg:text-end">
+            Frequently Ask Question
+          </h1>
+          <div className="w-20 border-t-2 border-neutral-400"></div>
+          <p className="text-start lg:text-end">All the answer in one place</p>
+        </div>
+
+        <div className="w-full lg:w-2/3"></div>
       </section>
     </>
   );
