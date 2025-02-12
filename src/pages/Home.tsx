@@ -48,9 +48,8 @@ const Home = () => {
             className="w-full !pb-8 lg:w-2/3"
           >
             {dataRoom.map((item) => (
-              <SwiperSlide>
+              <SwiperSlide key={item.uid}>
                 <ListCard
-                  key={item.uid}
                   uid={item.uid}
                   name={item.name}
                   image={item.image}
@@ -95,7 +94,7 @@ const Home = () => {
           className="w-full lg:w-2/3"
         >
           {dataReview.map((item) => (
-            <SwiperSlide>
+            <SwiperSlide key={item.name}>
               <div className="flex h-72 w-96 flex-col items-center gap-2 rounded-lg border-x-4 border-primary p-4 shadow-md">
                 <img
                   src={item.avatar}
