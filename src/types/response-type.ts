@@ -10,3 +10,8 @@ export type RoomTypeType = {
   total_location: number;
   quota: string;
 };
+
+export type CityType = {
+  id: number;
+  name: string;
+};

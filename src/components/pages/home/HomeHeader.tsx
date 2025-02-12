@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import useAxios from "../../../plugins/axios";
 
 // Components
 import Button from "../../global/button";
 import InputSelect from "../../global/input/InputSelect";
 import InputText from "../../global/input/InputText";
 import { Icon } from "@iconify/react/dist/iconify.js";
+
+import { CityType, DefaultResponseType } from "../../../types/response-type";
 
 const HomeHeader = () => {
   const optionsSize = [
@@ -13,25 +16,37 @@ const HomeHeader = () => {
     { value: 3, label: "3 orang" },
   ];
 
-  const optionsCity = [
-    { value: "malang", label: "Malang" },
-    { value: "surabya", label: "Surabya" },
-  ];
-
   const [searchPayload, setSearchPayload] = useState({
     location: "",
     size: 1,
-    city: "",
+    city: 0,
   });
   const [isSearchClick, setIsSearchClick] = useState<boolean>(false);
+
+  const [city, setCity] = useState<CityType[]>([]);
 
   const clickSearch = () => {
     setIsSearchClick(!isSearchClick);
   };
 
+  const getCity = async () => {
+    try {
+      const response: DefaultResponseType<CityType[]> =
+        await useAxios.get("/city");
+
+      setCity(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const submit = () => {
     alert(JSON.stringify(searchPayload));
   };
+
+  useEffect(() => {
+    getCity();
+  }, []);
 
   return (
     <>
@@ -101,7 +116,10 @@ const HomeHeader = () => {
             <InputSelect
               name="city"
               placeholder="City"
-              options={optionsCity}
+              options={city.map((item) => ({
+                value: item.id,
+                label: item.name,
+              }))}
               icon="material-symbols:location-on-rounded"
               className="w-52"
               rounded
@@ -109,7 +127,7 @@ const HomeHeader = () => {
               updateValue={(val) =>
                 setSearchPayload((prevValue) => ({
                   ...prevValue,
-                  city: String(val),
+                  city: Number(val),
                 }))
               }
             />
@@ -160,15 +178,15 @@ const HomeHeader = () => {
           <InputSelect
             name="city"
             placeholder="City"
-            options={optionsCity}
+            options={city.map((item) => ({ value: item.id, label: item.name }))}
             icon="material-symbols:location-on-rounded"
+            className="w-52"
             rounded
-            menuPlacement="top"
             initialValue={searchPayload.city}
             updateValue={(val) =>
               setSearchPayload((prevValue) => ({
                 ...prevValue,
-                city: String(val),
+                city: Number(val),
               }))
             }
           />
