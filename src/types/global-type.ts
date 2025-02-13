@@ -45,10 +45,10 @@ export type InputSelectType = InputType & {
 
 export type TabType = {
   items: Array<{
-    value: string;
+    value: string | number;
     label: string;
     disabled?: boolean;
   }>;
-  activeTab: string;
-  updateValue: (e: string) => void;
+  activeTab: string | number;
+  updateValue: (e: string | number) => void;
 };

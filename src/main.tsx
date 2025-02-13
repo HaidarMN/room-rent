@@ -2,6 +2,7 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router";
 
 import "./assets/css/index.css";
+import "swiper/swiper-bundle.css";
 
 // Layouts
 import MainLayout from "./layouts/MainLayout.tsx";
