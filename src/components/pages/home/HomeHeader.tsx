@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import useAxios from "../../../plugins/axios";
 
 // Components
 import Button from "../../global/button";
@@ -7,14 +6,11 @@ import InputSelect from "../../global/input/InputSelect";
 import InputText from "../../global/input/InputText";
 import { Icon } from "@iconify/react/dist/iconify.js";
 
-import { CityType, DefaultResponseType } from "../../../types/response-type";
+// Store
+import { useMasterDataStore } from "../../../stores/master-data.store";
 
 const HomeHeader = () => {
-  const optionsSize = [
-    { value: 1, label: "1 orang" },
-    { value: 2, label: "2 orang" },
-    { value: 3, label: "3 orang" },
-  ];
+  const { cityList, roomSizeList, getCity, getRoomSize } = useMasterDataStore();
 
   const [searchPayload, setSearchPayload] = useState({
     location: "",
@@ -23,21 +19,8 @@ const HomeHeader = () => {
   });
   const [isSearchClick, setIsSearchClick] = useState<boolean>(false);
 
-  const [city, setCity] = useState<CityType[]>([]);
-
   const clickSearch = () => {
     setIsSearchClick(!isSearchClick);
-  };
-
-  const getCity = async () => {
-    try {
-      const response: DefaultResponseType<CityType[]> =
-        await useAxios.get("/city");
-
-      setCity(response.data);
-    } catch (error) {
-      console.error(error);
-    }
   };
 
   const submit = () => {
@@ -46,6 +29,7 @@ const HomeHeader = () => {
 
   useEffect(() => {
     getCity();
+    getRoomSize();
   }, []);
 
   return (
@@ -101,7 +85,10 @@ const HomeHeader = () => {
             <InputSelect
               name="size"
               placeholder="Size"
-              options={optionsSize}
+              options={roomSizeList.map((item) => ({
+                value: item.id,
+                label: item.quota,
+              }))}
               icon="ic:baseline-people-alt"
               className="w-52"
               rounded
@@ -116,7 +103,7 @@ const HomeHeader = () => {
             <InputSelect
               name="city"
               placeholder="City"
-              options={city.map((item) => ({
+              options={cityList.map((item) => ({
                 value: item.id,
                 label: item.name,
               }))}
@@ -163,7 +150,10 @@ const HomeHeader = () => {
           <InputSelect
             name="size"
             placeholder="Size"
-            options={optionsSize}
+            options={roomSizeList.map((item) => ({
+              value: item.id,
+              label: item.quota,
+            }))}
             icon="ic:baseline-people-alt"
             rounded
             menuPlacement="top"
@@ -178,7 +168,10 @@ const HomeHeader = () => {
           <InputSelect
             name="city"
             placeholder="City"
-            options={city.map((item) => ({ value: item.id, label: item.name }))}
+            options={cityList.map((item) => ({
+              value: item.id,
+              label: item.name,
+            }))}
             icon="material-symbols:location-on-rounded"
             className="w-52"
             rounded

@@ -1,48 +1,37 @@
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import useAxios from "../../../plugins/axios";
 
 // Components
 import { Icon } from "@iconify/react/dist/iconify.js";
 import Tab from "../../global/tab";
 import Button from "../../global/button";
 
-import {
-  DefaultResponseType,
-  RoomTypeType,
-} from "../../../types/response-type";
+// Store
+import { useMasterDataStore } from "../../../stores/master-data.store";
+
+// Type
+import { RoomTypeType } from "../../../types/master-data.type";
 
 const SpaceType = () => {
   const navigate = useNavigate();
 
+  const { roomTypeList, getRoomType } = useMasterDataStore();
+
   const [activeTab, setActiveTab] = useState<number>(1);
   const [selectedSpace, setSelectedSpace] = useState<RoomTypeType>();
 
-  const [data, setData] = useState<RoomTypeType[]>([]);
-
   const findSelectedSpace = useCallback(() => {
-    const selectedData = data.find((item) => item.id === activeTab);
+    const selectedData = roomTypeList.find((item) => item.id === activeTab);
 
     setSelectedSpace(selectedData);
-  }, [data, activeTab]);
-
-  const getData = async () => {
-    try {
-      const response: DefaultResponseType<RoomTypeType[]> =
-        await useAxios.get("/room-type");
-
-      setData(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  }, [roomTypeList, activeTab]);
 
   useEffect(() => {
     findSelectedSpace();
   }, [findSelectedSpace]);
 
   useEffect(() => {
-    getData();
+    getRoomType();
   }, []);
 
   return (
@@ -51,7 +40,10 @@ const SpaceType = () => {
 
       <div className="container flex flex-col gap-8">
         <Tab
-          items={data?.map((item) => ({ value: item.id, label: item.name }))}
+          items={roomTypeList?.map((item) => ({
+            value: item.id,
+            label: item.name,
+          }))}
           activeTab={activeTab}
           updateValue={(val) => setActiveTab(Number(val))}
         />

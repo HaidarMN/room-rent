@@ -15,3 +15,8 @@ export type CityType = {
   id: number;
   name: string;
 };
+
+export type RoomSizeType = {
+  id: number;
+  quota: string;
+};
