@@ -2,9 +2,7 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router";
 
 import "./assets/css/index.css";
-import "swiper/css";
-import "swiper/css/scrollbar";
-import "swiper/css/effect-coverflow";
+import "swiper/swiper-bundle.css";
 
 // Layouts
 import MainLayout from "./layouts/MainLayout.tsx";
