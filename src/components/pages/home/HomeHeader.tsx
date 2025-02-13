@@ -7,7 +7,7 @@ import InputText from "../../global/input/InputText";
 import { Icon } from "@iconify/react/dist/iconify.js";
 
 // Store
-import { useMasterDataStore } from "../../../stores/master-data.store";
+import useMasterDataStore from "../../../stores/master-data.store";
 
 const HomeHeader = () => {
   const { cityList, roomSizeList, getCity, getRoomSize } = useMasterDataStore();

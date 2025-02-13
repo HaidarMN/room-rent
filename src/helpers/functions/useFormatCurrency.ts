@@ -1,4 +1,4 @@
-const useFormatCurrency = (value: number) => {
+const formatCurrency = (value: number) => {
   const formatedValue = new Intl.NumberFormat("id-ID", {
     currency: "IDR",
     maximumFractionDigits: 0,
@@ -7,4 +7,4 @@ const useFormatCurrency = (value: number) => {
   return formatedValue;
 };
 
-export default useFormatCurrency;
+export default formatCurrency;

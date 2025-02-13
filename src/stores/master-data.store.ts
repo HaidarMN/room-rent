@@ -19,7 +19,7 @@ type Action = {
   getRoomSize: () => void;
 };
 
-export const useMasterDataStore = create<State & Action>((set, get) => ({
+const useMasterDataStore = create<State & Action>((set, get) => ({
   roomTypeList: [],
   cityList: [],
   roomSizeList: [],
@@ -66,3 +66,5 @@ export const useMasterDataStore = create<State & Action>((set, get) => ({
     }
   },
 }));
+
+export default useMasterDataStore;

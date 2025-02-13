@@ -1,7 +1,7 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { ListCardType } from "../../types/room-type";
 
-import useFormatCurrency from "../../helpers/functions/useFormatCurrency";
+import formatCurrency from "../../helpers/functions/useFormatCurrency";
 import { Link } from "react-router";
 
 const ListCard = ({
@@ -52,7 +52,7 @@ const ListCard = ({
           <span className="text-sm text-neutral-400">from </span>
           IDR{" "}
           <strong className="text-2xl">
-            {useFormatCurrency(price.total_price)}
+            {formatCurrency(price.total_price)}
           </strong>{" "}
           / hour
         </span>
@@ -60,7 +60,7 @@ const ListCard = ({
           <span className="font-bold text-neutral-400">
             IDR{" "}
             <span className="line-through">
-              {useFormatCurrency(price.base_price)}
+              {formatCurrency(price.base_price)}
             </span>{" "}
             / hour
           </span>

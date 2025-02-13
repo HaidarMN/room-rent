@@ -7,7 +7,7 @@ import Tab from "../../global/tab";
 import Button from "../../global/button";
 
 // Store
-import { useMasterDataStore } from "../../../stores/master-data.store";
+import useMasterDataStore from "../../../stores/master-data.store";
 
 // Type
 import { RoomTypeType } from "../../../types/master-data.type";
