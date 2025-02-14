@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // Components
 import Button from "../../global/button";
@@ -6,22 +6,16 @@ import InputSelect from "../../global/input/InputSelect";
 import InputText from "../../global/input/InputText";
 import { Icon } from "@iconify/react/dist/iconify.js";
 
-const HomeHeader = () => {
-  const optionsSize = [
-    { value: 1, label: "1 orang" },
-    { value: 2, label: "2 orang" },
-    { value: 3, label: "3 orang" },
-  ];
+// Store
+import useMasterDataStore from "../../../stores/master-data.store";
 
-  const optionsCity = [
-    { value: "malang", label: "Malang" },
-    { value: "surabya", label: "Surabya" },
-  ];
+const HomeHeader = () => {
+  const { cityList, roomSizeList, getCity, getRoomSize } = useMasterDataStore();
 
   const [searchPayload, setSearchPayload] = useState({
     location: "",
     size: 1,
-    city: "",
+    city: 0,
   });
   const [isSearchClick, setIsSearchClick] = useState<boolean>(false);
 
@@ -33,20 +27,23 @@ const HomeHeader = () => {
     alert(JSON.stringify(searchPayload));
   };
 
+  useEffect(() => {
+    getCity();
+    getRoomSize();
+  }, []);
+
   return (
     <>
       <div className="relative flex h-[30rem] w-full flex-col">
         <div
           className="relative h-full w-full bg-cover bg-center"
           style={{
-            backgroundImage: "url('./src/assets/images/landing-page.jpg')",
+            backgroundImage: "url('/images/landing-page.jpg')",
           }}
         >
           <div className="absolute inset-0 bg-black/30"></div>
           <div className="container relative top-1/2 z-10 flex w-full -translate-y-1/2 flex-col gap-2 text-white">
-            <h1 className="font-oswald text-4xl font-bold md:text-6xl">
-              RoomRent
-            </h1>
+            <h1 className="title">RoomRent</h1>
             <p className="text-base font-medium md:text-xl xl:text-2xl">
               Simpliying the way you find and rent your perfect space
             </p>
@@ -88,7 +85,10 @@ const HomeHeader = () => {
             <InputSelect
               name="size"
               placeholder="Size"
-              options={optionsSize}
+              options={roomSizeList.map((item) => ({
+                value: item.id,
+                label: item.quota,
+              }))}
               icon="ic:baseline-people-alt"
               className="w-52"
               rounded
@@ -103,7 +103,10 @@ const HomeHeader = () => {
             <InputSelect
               name="city"
               placeholder="City"
-              options={optionsCity}
+              options={cityList.map((item) => ({
+                value: item.id,
+                label: item.name,
+              }))}
               icon="material-symbols:location-on-rounded"
               className="w-52"
               rounded
@@ -111,7 +114,7 @@ const HomeHeader = () => {
               updateValue={(val) =>
                 setSearchPayload((prevValue) => ({
                   ...prevValue,
-                  city: String(val),
+                  city: Number(val),
                 }))
               }
             />
@@ -147,7 +150,10 @@ const HomeHeader = () => {
           <InputSelect
             name="size"
             placeholder="Size"
-            options={optionsSize}
+            options={roomSizeList.map((item) => ({
+              value: item.id,
+              label: item.quota,
+            }))}
             icon="ic:baseline-people-alt"
             rounded
             menuPlacement="top"
@@ -162,15 +168,18 @@ const HomeHeader = () => {
           <InputSelect
             name="city"
             placeholder="City"
-            options={optionsCity}
+            options={cityList.map((item) => ({
+              value: item.id,
+              label: item.name,
+            }))}
             icon="material-symbols:location-on-rounded"
+            className="w-52"
             rounded
-            menuPlacement="top"
             initialValue={searchPayload.city}
             updateValue={(val) =>
               setSearchPayload((prevValue) => ({
                 ...prevValue,
-                city: String(val),
+                city: Number(val),
               }))
             }
           />

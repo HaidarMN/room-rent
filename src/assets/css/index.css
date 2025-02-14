@@ -28,6 +28,13 @@
   /* #endregion */
 
   .title {
-    @apply font-oswald text-4xl font-bold;
+    @apply font-oswald text-4xl font-bold md:text-6xl;
   }
 }
+
+/* #region SWIPER */
+.swiper-slide {
+  width: auto !important;
+  height: auto !important;
+}
+/* #endregion */
