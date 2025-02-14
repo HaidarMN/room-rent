@@ -8,6 +8,7 @@ import MainLayout from "./layouts/MainLayout.tsx";
 
 // Pages
 import Home from "./pages/Home.tsx";
+import RoomList from "./pages/RoomList.tsx";
 
 // 404
 import NotFound from "./NotFound.tsx";
@@ -19,6 +20,7 @@ createRoot(document.getElementById("root")!).render(
 
       <Route element={<MainLayout />}>
         <Route index element={<Home />} />
+        <Route path="room-list" element={<RoomList />} />
       </Route>
     </Routes>
   </BrowserRouter>,
