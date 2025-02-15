@@ -1,3 +1,6 @@
+import { useEffect, useState } from "react";
+import useAxios from "../plugins/axios";
+
 // Helper
 import { dataRoom, dataReview } from "../helpers/data";
 
@@ -10,12 +13,32 @@ import {
   Autoplay,
 } from "swiper/modules";
 
-// Page Items
+// Components
 import ListCard from "../components/room/ListCard";
 import HomeHeader from "../components/pages/home/HomeHeader";
 import SpaceType from "../components/pages/home/SpaceType";
+import Accordion from "../components/global/accordion";
+
+import { DefaultResponseType } from "../types/api.type";
+import { FaqType } from "../types/general.type";
 
 const Home = () => {
+  const [dataFaq, setDataFaq] = useState<FaqType[]>([]);
+
+  const getFaq = async () => {
+    try {
+      const response: DefaultResponseType<FaqType[]> =
+        await useAxios.get("/faq");
+
+      setDataFaq(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getFaq();
+  }, []);
   return (
     <>
       <section>
@@ -111,7 +134,7 @@ const Home = () => {
         </Swiper>
       </section>
 
-      <section className="container bg-light py-8">
+      <section className="container gap-10 bg-light py-8">
         <div className="flex w-full flex-col gap-4 lg:w-1/3">
           <h1 className="title text-secondary">Enjoy Our Privilege</h1>
           <div className="w-20 border-t-2 border-accent"></div>
@@ -119,7 +142,7 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="container flex flex-col py-8 lg:flex-row-reverse">
+      <section className="container flex flex-col gap-10 py-8 lg:flex-row-reverse">
         <div className="flex w-full flex-col items-start gap-4 lg:w-1/3 lg:items-end">
           <h1 className="title text-start lg:text-end">
             Frequently Ask Question
@@ -128,7 +151,15 @@ const Home = () => {
           <p className="text-start lg:text-end">All the answer in one place</p>
         </div>
 
-        <div className="w-full lg:w-2/3"></div>
+        <div className="w-full lg:w-2/3">
+          <Accordion
+            data={dataFaq.map((item) => ({
+              id: item.id,
+              title: item.question,
+              description: item.answer,
+            }))}
+          />
+        </div>
       </section>
     </>
   );
