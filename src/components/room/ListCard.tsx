@@ -14,12 +14,12 @@ const ListCard = ({
   size,
 }: ListCardType) => {
   return (
-    <div className="flex h-full w-64 flex-col rounded-lg bg-white shadow-md md:w-72 xl:w-80">
+    <div className="flex h-full w-64 flex-col rounded-lg bg-white shadow-md md:w-72 xl:w-72">
       <Link to={`/listings/${uid}`}>
         <img
           src={image}
           alt={name}
-          className="size-64 rounded-t-lg object-cover object-center md:size-72 xl:size-80"
+          className="size-64 rounded-t-lg object-cover object-center md:size-72 xl:size-72"
         />
       </Link>
 
