@@ -52,3 +52,11 @@ export type TabType = {
   activeTab: string | number;
   updateValue: (e: string | number) => void;
 };
+
+export type AccordionType = {
+  data: {
+    id: string | number;
+    title: string;
+    description: string;
+  }[];
+};
