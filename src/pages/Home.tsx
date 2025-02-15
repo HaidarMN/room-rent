@@ -143,7 +143,7 @@ const Home = () => {
             <p>What makes us your best friend</p>
           </div>
 
-          <div className="grid w-full grid-cols-2 gap-8 lg:w-2/3">
+          <div className="grid w-full grid-cols-1 gap-8 md:grid-cols-2 lg:w-2/3">
             <div className="flex flex-col items-center gap-2 text-center">
               <Icon icon="ph:devices-fill" className="text-8xl text-accent" />
               <h2 className="text-xl font-bold text-secondary">Easy Access</h2>
