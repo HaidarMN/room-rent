@@ -1,7 +1,7 @@
 import { create } from "zustand";
+import { DefaultResponseType } from "../types/api.type";
 import {
   CityType,
-  DefaultResponseType,
   RoomSizeType,
   RoomTypeType,
 } from "../types/master-data.type";
