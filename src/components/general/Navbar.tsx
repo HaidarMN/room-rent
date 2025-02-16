@@ -6,8 +6,9 @@ import { Icon } from "@iconify/react";
 const Navbar = () => {
   const menuItems = [
     { label: "Home", link: "" },
+    { label: "Room List", link: "room-list" },
     { label: "About Us", link: "about-us" },
-    { label: "Contact Us", link: "contact-us" },
+    { label: "Contact Us", link: "contact-us"},
   ];
 
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
