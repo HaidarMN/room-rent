@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import useAxios from "../plugins/axios";
 
 // Helper
-import { dataRoom, dataReview } from "../helpers/data";
+import { dataReview } from "../helpers/data";
 
 // Swiper
 import { Swiper, SwiperSlide } from "swiper/react";
