@@ -1,42 +1,88 @@
-// Helper
 import { useEffect, useState } from "react";
+import useAxios from "../plugins/axios";
 
 import InputText from "../components/global/input/InputText";
 import InputSelect from "../components/global/input/InputSelect";
 import Button from "../components/global/button";
 import ListCard from "../components/room/ListCard";
+import Pagination from "../components/global/pagination";
 
 import useMasterDataStore from "../stores/master-data.store";
 
-import { dataRoom } from "../helpers/data";
+import { DefaultResponsePaginationType } from "../types/api.type";
+import { RoomListType } from "../types/general.type";
 
 const RoomList = () => {
-   const { cityList, roomSizeList, getCity, getRoomSize } =
-     useMasterDataStore();
+  const { cityList, roomSizeList, getCity, getRoomSize } = useMasterDataStore();
 
   const [searchPayload, setSearchPayload] = useState({
     location: "",
     size: 1,
-    city: 0,
+    city: null as number | null,
+    page: 1,
+    page_size: 10,
   });
 
-   const submit = () => {
-     alert(JSON.stringify(searchPayload));
-   };
+  const [roomList, setRoomList] = useState<
+    DefaultResponsePaginationType<RoomListType[]>
+  >({
+    data: [],
+    meta: {
+      page: 1,
+      page_size: 1,
+      count: 1,
+      page_count: 1,
+    },
+  });
 
-    useEffect(() => {
-      getCity();
-      getRoomSize();
-    }, []);
+  const getRoom = async () => {
+    try {
+      const response: DefaultResponsePaginationType<RoomListType[]> =
+        await useAxios.get("/room", {
+          params: searchPayload,
+        });
+
+      setRoomList(response);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const submit = async () => {
+    await getRoom();
+  };
+
+  const changePage = async (val: number) => {
+    setSearchPayload((prevValue) => ({
+      ...prevValue,
+      page: val,
+    }));
+  };
+
+  const changePageSize = async (val: number) => {
+    setSearchPayload((prevValue) => ({
+      ...prevValue,
+      page: 1,
+      page_size: val,
+    }));
+  };
+
+  useEffect(() => {
+    getCity();
+    getRoomSize();
+  }, []);
+
+  useEffect(() => {
+    getRoom();
+  }, [searchPayload]);
 
   return (
-    <section className="container flex flex-col gap-4">
-      <div className="flex flex-row items-center gap-4">
+    <section className="container flex flex-col gap-4 py-8">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
         <InputText
           name="name"
           placeholder="Location name"
           icon="material-symbols:search"
-          className="60"
           initialValue={searchPayload.location}
           updateValue={(val) =>
             setSearchPayload((prevValue) => ({
@@ -53,7 +99,6 @@ const RoomList = () => {
             label: item.quota,
           }))}
           icon="ic:baseline-people-alt"
-          className="52"
           initialValue={searchPayload.size}
           updateValue={(val) =>
             setSearchPayload((prevValue) => ({
@@ -70,8 +115,7 @@ const RoomList = () => {
             label: item.name,
           }))}
           icon="material-symbols:location-on-rounded"
-          className="52"
-          initialValue={searchPayload.city}
+          initialValue={searchPayload.city || 0}
           updateValue={(val) =>
             setSearchPayload((prevValue) => ({
               ...prevValue,
@@ -79,24 +123,29 @@ const RoomList = () => {
             }))
           }
         />
-        <Button className="" onClick={submit}>
-          Search Now
-        </Button>
+        <Button onClick={submit}>Search Now</Button>
       </div>
-      <div className="grid grid-cols-1 justify-center gap-8 py-8 md:grid-cols-2 xl:grid-cols-4">
-        {dataRoom.map((item) => (
+      <div className="grid grid-cols-1 justify-center gap-4 py-8 md:grid-cols-2 xl:grid-cols-3">
+        {roomList.data.map((item) => (
           <ListCard
-            key={item.uid}
-            uid={item.uid}
+            key={item.id}
+            uid={item.id}
             name={item.name}
             image={item.image}
             price={item.price}
             description={item.description}
-            location={item.location}
-            size={item.size}
+            location={item.city.name}
+            size={item.quota}
           />
         ))}
       </div>
+      <Pagination
+        page={searchPayload.page}
+        pageSize={searchPayload.page_size}
+        totalPage={roomList.meta.page_count}
+        changePage={changePage}
+        changePageSize={changePageSize}
+      />
     </section>
   );
 };

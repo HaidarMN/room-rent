@@ -14,12 +14,12 @@ const ListCard = ({
   size,
 }: ListCardType) => {
   return (
-    <div className="flex h-full w-64 flex-col rounded-lg bg-white shadow-md md:w-72 xl:w-72">
-      <Link to={`/listings/${uid}`}>
+    <div className="flex h-full w-full flex-col rounded-lg bg-white shadow-md">
+      <Link to={`/listings/${uid}`} className="flex justify-center">
         <img
           src={image}
           alt={name}
-          className="size-64 rounded-t-lg object-cover object-center md:size-72 xl:size-72"
+          className="h-64 w-full rounded-t-lg object-cover object-center md:h-72"
         />
       </Link>
 
@@ -33,13 +33,16 @@ const ListCard = ({
           {description}
         </p>
 
-        <div className="grid w-full grid-cols-1 gap-2 md:grid-cols-2">
-          <div className="flex flex-row items-center gap-2 text-sm font-medium text-neutral-400">
-            <Icon icon="material-symbols:location-on-rounded" />
+        <div className="flex flex-col justify-between gap-2 md:flex-row">
+          <div className="flex flex-row items-center gap-2 text-xs font-medium text-neutral-400">
+            <Icon
+              icon="material-symbols:location-on-rounded"
+              className="text-sm"
+            />
             {location}
           </div>
-          <div className="flex flex-row items-center gap-2 text-sm font-medium text-neutral-400">
-            <Icon icon="ic:baseline-people-alt" />
+          <div className="flex flex-row items-center gap-2 text-xs font-medium text-neutral-400">
+            <Icon icon="ic:baseline-people-alt" className="text-sm" />
             {size} people
           </div>
         </div>
@@ -51,7 +54,7 @@ const ListCard = ({
         >
           <span className="text-sm text-neutral-400">from </span>
           IDR{" "}
-          <strong className="text-2xl">
+          <strong className="text-lg md:text-xl">
             {formatCurrency(price.total_price)}
           </strong>{" "}
           / hour
