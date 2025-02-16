@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 import { Icon } from "@iconify/react";
 
 const Footer = () => {
@@ -24,10 +26,10 @@ const Footer = () => {
           <div className="flex flex-row items-center gap-2">
             <Icon icon="simple-icons:gmail" className="text-2xl" />
             <a
-              href="mailto:help-roomrent@maildrop.cc"
+              href="mailto:help-roomrent@yopmail.com"
               className="hover:text-primary"
             >
-              help-roomrent@maildrop.cc
+              help-roomrent@yopmail.com
             </a>
           </div>
           <div className="flex flex-row items-center gap-4">
@@ -56,9 +58,12 @@ const Footer = () => {
 
         <div className="flex flex-col gap-2">
           <h2 className="text-lg font-bold">Information</h2>
-          <span>Privacy Policy</span>
-          <span>Terms and Conditions</span>
-          <span>FAQ</span>
+          <Link to="/privacy-policy" className="hover:text-primary">
+            Privacy Policy
+          </Link>
+          <Link to="/terms-and-conditions" className="hover:text-primary">
+            Terms and Conditions
+          </Link>
         </div>
       </div>
 

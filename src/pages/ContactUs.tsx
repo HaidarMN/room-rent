@@ -22,7 +22,7 @@ const ContactUs = () => {
   });
 
   const submit = () => {
-    const mailtoLink = `mailto:help-roomrent@maildrop.cc?subject=${encodeURIComponent(contactPayload.firstName + " " + contactPayload.lastName)}&body=${encodeURIComponent(contactPayload.message)}`;
+    const mailtoLink = `mailto:help-roomrent@yopmail.com?subject=${encodeURIComponent(contactPayload.firstName + " " + contactPayload.lastName)}&body=${encodeURIComponent(contactPayload.message)}`;
     window.location.href = mailtoLink;
   };
 
@@ -64,10 +64,10 @@ const ContactUs = () => {
           <div className="flex flex-row items-center gap-2">
             <Icon icon="simple-icons:gmail" className="text-2xl" />
             <a
-              href="mailto:help-roomrent@maildrop.cc"
+              href="mailto:help-roomrent@yopmail.com"
               className="hover:text-primary"
             >
-              help-roomrent@maildrop.cc
+              help-roomrent@yopmail.com
             </a>
           </div>
         </div>
