@@ -5,7 +5,7 @@ const Footer = () => {
 
   return (
     <footer className="flex w-full flex-col items-center gap-6 bg-secondary py-6 text-light lg:py-10">
-      <h1 className="font-oswald container text-4xl font-bold">RoomRent</h1>
+      <h1 className="container font-oswald text-4xl font-bold">RoomRent</h1>
       <div className="container grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-10">
         <div className="flex flex-col gap-4">
           <span className="text-light">
@@ -23,8 +23,11 @@ const Footer = () => {
           </div>
           <div className="flex flex-row items-center gap-2">
             <Icon icon="simple-icons:gmail" className="text-2xl" />
-            <a href="mailto:help@roomrent.id" className="hover:text-primary">
-              help@roomrent.id
+            <a
+              href="mailto:help-roomrent@maildrop.cc"
+              className="hover:text-primary"
+            >
+              help-roomrent@maildrop.cc
             </a>
           </div>
           <div className="flex flex-row items-center gap-4">
