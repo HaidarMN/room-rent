@@ -10,6 +10,8 @@ import MainLayout from "./layouts/MainLayout.tsx";
 // Pages
 import Home from "./pages/Home.tsx";
 import ContactUs from "./pages/ContactUs.tsx";
+import PrivacyPolicy from "./pages/PrivacyPolicy.tsx";
+import TermsConditions from "./pages/TermsConditions.tsx";
 
 // 404
 import NotFound from "./NotFound.tsx";
@@ -22,6 +24,8 @@ createRoot(document.getElementById("root")!).render(
       <Route element={<MainLayout />}>
         <Route index element={<Home />} />
         <Route path="/contact-us" element={<ContactUs />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms-and-conditions" element={<TermsConditions />} />
       </Route>
     </Routes>
   </BrowserRouter>,
