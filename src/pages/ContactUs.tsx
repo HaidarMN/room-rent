@@ -21,6 +21,11 @@ const ContactUs = () => {
     message: "",
   });
 
+  const submit = () => {
+    const mailtoLink = `mailto:haidarmn31@gmail.com?subject=${encodeURIComponent(contactPayload.firstName + " " + contactPayload.lastName)}&body=${encodeURIComponent(contactPayload.message)}`;
+    window.location.href = mailtoLink;
+  };
+
   useEffect(() => {
     if (map.current) return;
 
@@ -135,7 +140,7 @@ const ContactUs = () => {
             }
           />
 
-          <Button>Send Message</Button>
+          <Button onClick={submit}>Send Message</Button>
         </div>
       </div>
 
