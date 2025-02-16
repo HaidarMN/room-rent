@@ -60,3 +60,11 @@ export type AccordionType = {
     description: string;
   }[];
 };
+
+export type PaginationType = {
+  page: number;
+  pageSize: number;
+  totalPage: number;
+  changePage: (e: number) => void;
+  changePageSize: (e: number) => void;
+};

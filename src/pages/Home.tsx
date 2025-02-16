@@ -20,11 +20,33 @@ import HomeHeader from "../components/pages/home/HomeHeader";
 import SpaceType from "../components/pages/home/SpaceType";
 import Accordion from "../components/global/accordion";
 
-import { DefaultResponseType } from "../types/api.type";
-import { FaqType } from "../types/general.type";
+import {
+  DefaultResponsePaginationType,
+  DefaultResponseType,
+} from "../types/api.type";
+import { FaqType, RoomListType } from "../types/general.type";
 
 const Home = () => {
+  const [availableRoom] = useState({
+    location: null,
+    size: null,
+    city: null,
+    page: 1,
+    page_size: 10,
+  });
+
   const [dataFaq, setDataFaq] = useState<FaqType[]>([]);
+  const [roomList, setRoomList] = useState<
+    DefaultResponsePaginationType<RoomListType[]>
+  >({
+    data: [],
+    meta: {
+      page: 1,
+      page_size: 1,
+      count: 1,
+      page_count: 1,
+    },
+  });
 
   const getFaq = async () => {
     try {
@@ -37,9 +59,24 @@ const Home = () => {
     }
   };
 
+  const getRoom = async () => {
+    try {
+      const response: DefaultResponsePaginationType<RoomListType[]> =
+        await useAxios.get("/room", {
+          params: availableRoom,
+        });
+
+      setRoomList(response);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     getFaq();
+    getRoom();
   }, []);
+
   return (
     <>
       <section>
@@ -71,16 +108,16 @@ const Home = () => {
             modules={[Scrollbar, Mousewheel]}
             className="w-full !pb-8 lg:w-2/3"
           >
-            {dataRoom.map((item) => (
-              <SwiperSlide key={item.uid}>
+            {roomList.data.map((item) => (
+              <SwiperSlide key={item.id} className="!w-64 md:!w-72">
                 <ListCard
-                  uid={item.uid}
+                  uid={item.id}
                   name={item.name}
                   image={item.image}
                   description={item.description}
                   price={item.price}
-                  location={item.location}
-                  size={item.size}
+                  location={item.city.name}
+                  size={item.quota}
                 />
               </SwiperSlide>
             ))}

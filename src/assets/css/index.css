@@ -34,7 +34,7 @@
 
 /* #region SWIPER */
 .swiper-slide {
-  width: auto !important;
+  /* width: auto !important; */
   height: auto !important;
 }
 /* #endregion */
