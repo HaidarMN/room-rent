@@ -9,6 +9,7 @@ import MainLayout from "./layouts/MainLayout.tsx";
 
 // Pages
 import Home from "./pages/Home.tsx";
+import ContactUs from "./pages/ContactUs.tsx";
 
 // 404
 import NotFound from "./NotFound.tsx";
@@ -20,6 +21,7 @@ createRoot(document.getElementById("root")!).render(
 
       <Route element={<MainLayout />}>
         <Route index element={<Home />} />
+        <Route path="/contact-us" element={<ContactUs />} />
       </Route>
     </Routes>
   </BrowserRouter>,
