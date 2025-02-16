@@ -16,6 +16,7 @@ import TermsConditions from "./pages/TermsConditions.tsx";
 // 404
 import NotFound from "./NotFound.tsx";
 import RoomList from "./pages/RoomList.tsx";
+import AboutUs from "./pages/AboutUs.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <BrowserRouter>
@@ -25,6 +26,7 @@ createRoot(document.getElementById("root")!).render(
       <Route element={<MainLayout />}>
         <Route index element={<Home />} />
         <Route path="/room-list" element={<RoomList />} />
+        <Route path="/about-us" element={<AboutUs />} />
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-and-conditions" element={<TermsConditions />} />
